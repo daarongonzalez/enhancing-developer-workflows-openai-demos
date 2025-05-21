@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bethany's Pie Shop</title>
+  <link href="./css/main.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header section with navigation and cart icon -->
+  <header class="site-header">
+    <div class="site-header-wrapper">
+      <h1><a href="index.html"><img src="./img/logo.png" alt="Bethany's Pie Shop Logo" /></a></h1>
+      <nav>
+        <ul>
+          <li><a class="shop-dropdown" href="#">Shop <span>&#8964;</span></a>
+            <ul id="hover-menu">
+              <li><a href="#">Seasonal Pies</a></li>
+              <li><a href="#">Fruit Pies</a></li>
+              <li><a href="shop.html">Cheesecakes</a></li>
+              <li><a href="#">All Pies</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </nav>
+      <div class="header-icons">
+        <ul>
+          <li><a href=""><img src="./img/search-icon.png" alt="search icon" /></a></li>
+          <li><a href=""><img src="./img/profile-icon.png" alt="profile icon" /></a></li>
+          <!-- Cart icon with dynamic count badge -->
+          <li><a href="cart.html"><img src="./img/cart-icon.png" alt="shopping cart icon" /><span class="cart-count"></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main cart content section -->
+  <section class="main-content">
+    <h2>Shopping Cart<hr /></h2>
+    <div class="cart-wrapper">
+      <!-- Cart items container - populated dynamically by cart.js -->
+      <div class="cart-items-wrapper">
+        <!-- Cart items will be dynamically inserted here -->
+      </div>
+
+      <!-- Order summary and checkout section -->
+      <div class="subtotal-wrapper">
+        <form>
+          <!-- Subtotal row -->
+          <div class="row">
+            <p>Subtotal</p>
+            <p id="subtotal">$0.00</p>
+          </div>
+          <!-- Shipping row -->
+          <div class="row">
+            <p>Shipping</p>
+            <p id="shipping">$0.00</p>
+          </div>
+          <!-- Tax row -->
+          <div class="row">
+            <p>Sales Tax</p>
+            <p id="tax">$0.00</p>
+          </div>
+          <div class="row">
+            <hr />
+          </div>
+          <!-- Total row -->
+          <div class="row">
+            <p>Estimated Total</p>
+            <p id="total">$0.00</p>
+          </div>
+          <div class="row">
+            <hr>
+          </div>
+          <!-- Discount code section -->
+          <div class="row">
+            <input type="text" name="discount-code" id="discount-code" placeholder="Discount code or gift card" />
+            <button type="button" id="apply-discount">Apply</button>
+          </div>
+          <div class="row">
+            <hr>
+          </div>
+          <!-- Checkout button -->
+          <div class="row">
+            <input type="submit" name="submit" id="submit" value="Checkout" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="./js/dropdown.js"></script>
+  <script src="./js/cart.js"></script>
+</body>
+
+</html>
