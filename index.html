@@ -11,10 +11,10 @@
   <header class="site-header">
     <div class="site-header-wrapper">
       <h1><a href="index.html"><img src="./img/logo.png" alt="Bethany's Pie Shop Logo" /></a></h1>
-      <nav>
+      <nav aria-label="Primary Navigation">
         <ul>
-          <li><a class="shop-dropdown" href="#">Shop <span>&#8964;</span></a>
-            <ul id="hover-menu">
+          <li><a class="shop-dropdown" href="#" id="shopDropdownButton" aria-haspopup="true" aria-expanded="false" aria-controls="hover-menu" aria-label="Shop categories dropdown">Shop <span>&#8964;</span></a>
+            <ul id="hover-menu" role="menu" aria-labelledby="shopDropdownButton">
               <li><a href="#">Seasonal Pies</a></li>
               <li><a href="#">Fruit Pies</a></li>
               <li><a href="shop.html">Cheesecakes</a></li>
@@ -27,9 +27,9 @@
       </nav>
       <div class="header-icons">
         <ul>
-          <li><a href=""><img src="./img/search-icon.png" alt="search icon" /></a></li>
-          <li><a href=""><img src="./img/profile-icon.png" alt="profile icon" /></a></li>
-          <li><a href="cart.html"><img src="./img/cart-icon.png" alt="shopping cart icon" /></a></li>
+          <li><a href="" aria-label="Search"><img src="./img/search-icon.png" alt="search icon" /></a></li>
+          <li><a href="" aria-label="User profile"><img src="./img/profile-icon.png" alt="profile icon" /></a></li>
+          <li><a href="cart.html" aria-label="Shopping cart"><img src="./img/cart-icon.png" alt="shopping cart icon" /></a></li>
         </ul>
       </div>
     </div>
@@ -39,9 +39,9 @@
       <div class="carousel-image"><img src="./img/hero-1.png" alt="larger header image of blueberry pie" /></div>
       <div class="carousel-image"><img src="./img/hero-2.png" alt="larger header image of blueberry pie" /></div>
       <div class="carousel-image"><img src="./img/hero-3.png" alt="larger header image of blueberry pie" /></div>
-      <button class="carousel-button-1 active-carousel-item"></button>
-      <button class="carousel-button-2"></button>
-      <button class="carousel-button-3"></button>
+      <button class="carousel-button-1 active-carousel-item" aria-label="Show first slide"></button>
+      <button class="carousel-button-2" aria-label="Show second slide"></button>
+      <button class="carousel-button-3" aria-label="Show third slide"></button>
     </div>
     <div class="focused-message">
       <div class="logo">
@@ -56,7 +56,7 @@
       <div class="pie-item">
         <img src="./img/pie-1.png" alt="image of Classic Apple Pie" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><a href="" aria-label="Add Classic Apple Pie to cart">+ Add to cart</a></p>
         </div>
         <div class="pie-info">
           <h4>Classic Apple Pie</h4>
@@ -66,7 +66,7 @@
       <div class="pie-item">
         <img src="./img/pie-2.png" alt="image of Pumpkin Pie" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><a href="" aria-label="Add Pumpkin Pie to cart">+ Add to cart</a></p>
         </div>
         <div class="pie-info">
           <h4>Classic Apple Pie</h4>
@@ -76,7 +76,7 @@
       <div class="pie-item">
         <img src="./img/pie-3.png" alt="image of Chocolate Pecan Pie" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><a href="" aria-label="Add Chocolate Pecan Pie to cart">+ Add to cart</a></p>
         </div>
         <div class="pie-info">
           <h4>Classic Apple Pie</h4>
