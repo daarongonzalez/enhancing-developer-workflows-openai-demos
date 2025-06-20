@@ -52,7 +52,6 @@ const cart = {
 
         sessionStorage.setItem('cart', JSON.stringify(cart));
         this.updateCartCount();
-        this.showNotification(`${product.name} added to cart!`);
     },
 
     /**
