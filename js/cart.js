@@ -110,22 +110,6 @@ const cart = {
     },
 
     /**
-     * Show a notification when an item is added to cart
-     * @param {string} message - Message to display
-     */
-    showNotification(message) {
-        const notification = document.createElement('div');
-        notification.className = 'cart-notification';
-        notification.textContent = message;
-        document.body.appendChild(notification);
-
-        // Remove notification after 2 seconds
-        setTimeout(() => {
-            notification.remove();
-        }, 2000);
-    },
-
-    /**
      * Display all cart items on the cart page
      * Creates HTML for each item including:
      * - Product image
