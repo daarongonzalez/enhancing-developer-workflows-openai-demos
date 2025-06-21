@@ -3,18 +3,23 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Bethany's Pie Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shopping cart - Bethany's Pie Shop">
+  <title>Shopping Cart - Bethany's Pie Shop</title>
   <link href="/css/main.css" rel="stylesheet">
+  <link href="/css/cart.css" rel="stylesheet">
 
   <script type="text/javascript">
     window.onload = () => {
       let submit_button = document.querySelector('#submit')
-      submit_button.addEventListener('click', (event) => {
-        event.preventDefault()
+      if (submit_button) {
+        submit_button.addEventListener('click', (event) => {
+          event.preventDefault()
 
-        // redirect to shipping.html when the checkout button is pressed to simulate a checkout flow
-        window.open('/shipping','_self')
-      }, false)
+          // redirect to shipping.html when the checkout button is pressed to simulate a checkout flow
+          window.open('/shipping','_self')
+        }, false)
+      }
     }
   </script>
 </head>
@@ -39,9 +44,9 @@
       </nav>
       <div class="header-icons">
         <ul>
-          <li><a href=""><img src="/img/search-icon.png" alt="search icon" /></a></li>
-          <li><a href=""><img src="/img/profile-icon.png" alt="profile icon" /></a></li>
-          <li><a href="/cart"><img src="/img/cart-icon.png" alt="shopping cart icon" /></a></li>
+          <li><a href="#" aria-label="Search"><img src="/img/search-icon.png" alt="search icon" /></a></li>
+          <li><a href="#" aria-label="Profile"><img src="/img/profile-icon.png" alt="profile icon" /></a></li>
+          <li><a href="/cart" aria-label="Shopping Cart"><img src="/img/cart-icon.png" alt="shopping cart icon" /></a></li>
         </ul>
       </div>
     </div>
@@ -49,99 +54,38 @@
   <section class="main-content">
     <h2>Shopping Cart<hr /></h2>
     <div class="cart-wrapper">
+      <!-- ENHANCED: Dynamic cart items container - populated by cart.js -->
       <div class="cart-items-wrapper">
-        <div class="cart-item">
-          <div class="cart-item-image-wrapper">
-            <img src="/img/pie-1.png" alt="image of Classic Apple Pie" />
-          </div>
-          <div class="cart-item-details-wrapper">
-            <p class="cart-item-number">ITEM # 00000001</p>
-            <p class="cart-item-name">Classic Apple Pie</p>
-            <p class="cart-item-description">Our famous homemade apple pie</p>
-            <div class="quantity-selector-wrapper">
-              <div class="quantity-selector">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
-              </div>
-              <a href="#">Delete</a>
-            </div>
-          </div>
-          <div class="cart-item-price-wrapper">
-            <p class="cart-item-price">$12.95</p>
-          </div>
-        </div>
-        <div class="cart-item">
-          <div class="cart-item-image-wrapper">
-            <img src="/img/pie-3.png" alt="image of Chocolate Pecan Pie" />
-          </div>
-          <div class="cart-item-details-wrapper">
-            <p class="cart-item-number">ITEM # 00000002</p>
-            <p class="cart-item-name">Chocolate Pecan Pie</p>
-            <p class="cart-item-description">Our famous homemade chocolate pecan pie</p>
-            <div class="quantity-selector-wrapper">
-              <div class="quantity-selector">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
-              </div>
-              <a href="#">Delete</a>
-            </div>
-          </div>
-          <div class="cart-item-price-wrapper">
-            <p class="cart-item-price">$12.95</p>
-          </div>
-        </div>
-        <div class="cart-item">
-          <div class="cart-item-image-wrapper">
-            <img src="/img/cheesecake-1.png" alt="image of Original Cheesecake" />
-          </div>
-          <div class="cart-item-details-wrapper">
-            <p class="cart-item-number">ITEM # 00000003</p>
-            <p class="cart-item-name">Original Cheesecake</p>
-            <p class="cart-item-description">Our famous homemade cheesecake</p>
-            <div class="quantity-selector-wrapper">
-              <div class="quantity-selector">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
-              </div>
-              <a href="#">Delete</a>
-            </div>
-          </div>
-          <div class="cart-item-price-wrapper">
-            <p class="cart-item-price">$18.95</p>
-          </div>
-        </div>
-
+        <!-- Cart items will be dynamically populated by JavaScript -->
       </div>
+      <!-- ENHANCED: Dynamic pricing container - calculated by cart.js -->
       <div class="subtotal-wrapper">
         <form>
           <div class="row">
             <p>Subtotal</p>
-            <p>$44.85</p>
+            <p>$0.00</p>
           </div>
           <div class="row">
             <p>Shipping</p>
-            <p>$15.00</p>
+            <p>$0.00</p>
           </div>
           <div class="row">
             <p>Sales Tax</p>
-            <p>--</p>
+            <p>$0.00</p>
           </div>
           <div class="row">
             <hr />
           </div>
           <div class="row">
             <p>Estimated Total</p>
-            <p>$59.85</p>
+            <p>$0.00</p>
           </div>
           <div class="row">
             <hr>
           </div>
           <div class="row">
-            <input type="text" name="discount-code" id="discount-code" placeholder="Discount code or gift card" />
-            <button>Apply</button>
+            <input type="text" name="discount-code" id="discount-code" placeholder="Discount code or gift card" aria-label="Discount code or gift card" />
+            <button type="button">Apply</button>
           </div>
           <div class="row">
             <hr>
@@ -153,7 +97,11 @@
       </div>
     </div>
   </section>
-  <script src="/js/dropdown.js"></script>
+  <!-- Script loading order is important for cart functionality -->
+  <script src="/js/products.js"></script>      <!-- Product database for item details -->
+  <script src="/js/cart-storage.js"></script>  <!-- Storage system for cart persistence -->
+  <script src="/js/cart.js"></script>          <!-- Main cart functionality and UI updates -->
+  <script src="/js/dropdown.js"></script>      <!-- Navigation dropdown functionality -->
 </body>
 
 </html>

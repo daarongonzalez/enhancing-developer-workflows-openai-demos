@@ -3,8 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Bethany's Pie Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Bethany's Pie Shop - Get in touch with us">
+  <title>Contact Us - Bethany's Pie Shop</title>
   <link href="/css/main.css" rel="stylesheet">
+  <link href="/css/cart.css" rel="stylesheet">
 </head>
 
 <body>
@@ -27,9 +30,9 @@
       </nav>
       <div class="header-icons">
         <ul>
-          <li><a href=""><img src="/img/search-icon.png" alt="search icon" /></a></li>
-          <li><a href=""><img src="/img/profile-icon.png" alt="profile icon" /></a></li>
-          <li><a href="/cart"><img src="/img/cart-icon.png" alt="shopping cart icon" /></a></li>
+          <li><a href="#" aria-label="Search"><img src="/img/search-icon.png" alt="search icon" /></a></li>
+          <li><a href="#" aria-label="Profile"><img src="/img/profile-icon.png" alt="profile icon" /></a></li>
+          <li><a href="/cart" aria-label="Shopping Cart"><img src="/img/cart-icon.png" alt="shopping cart icon" /></a></li>
         </ul>
       </div>
     </div>
@@ -46,19 +49,22 @@
         <fieldset>
           <form>
             <label for="full_name">Full name</label>
-            <input type="text" id="full_name" name="full_name" value="" />
+            <input type="text" id="full_name" name="full_name" value="" required />
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="" />
+            <input type="email" id="email" name="email" value="" required />
             <label for="phone">Phone</label>
             <input type="tel" id="phone" name="phone" value="" />
             <label for="comment">Comment</label>
-            <textarea id="comment" name="comment"></textarea>
+            <textarea id="comment" name="comment" required></textarea>
             <input type="submit" name="submit" id="submit" value="Submit" />
           </form>
         </fieldset>
       </div>
     </div>
   </section>
+  <script src="/js/products.js"></script>
+  <script src="/js/cart-storage.js"></script>
+  <script src="/js/cart.js"></script>
   <script src="/js/dropdown.js"></script>
 </body>
 

@@ -43,7 +43,7 @@ A beautiful and modern website for Bethany's Pie Shop, featuring a responsive de
    npm start
    ```
 
-4. Open your browser and navigate to `http://localhost:3000`
+4. Open your browser and navigate to `http://localhost:3030`
 
 ## Project Structure
 
@@ -54,8 +54,12 @@ A beautiful and modern website for Bethany's Pie Shop, featuring a responsive de
 ├── contact.html        # Contact information page
 ├── shipping.html       # Shipping information page
 ├── css/
-│   └── main.css        # Main stylesheet
+│   ├── main.css        # Main stylesheet
+│   └── cart.css        # Cart-specific styles
 ├── js/
+│   ├── products.js     # Product database
+│   ├── cart-storage.js # Cart storage management
+│   ├── cart.js         # Main cart functionality
 │   ├── carousel.js     # Carousel functionality
 │   ├── dropdown.js     # Navigation dropdown
 │   └── error-banner.js # Error handling
