@@ -3,8 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Bethany's Pie Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop our delicious cheesecakes - Bethany's Pie Shop">
+  <title>Shop Cheesecakes - Bethany's Pie Shop</title>
   <link href="/css/main.css" rel="stylesheet">
+  <link href="/css/cart.css" rel="stylesheet">
 </head>
 
 <body>
@@ -27,9 +30,9 @@
       </nav>
       <div class="header-icons">
         <ul>
-          <li><a href=""><img src="/img/search-icon.png" alt="search icon" /></a></li>
-          <li><a href=""><img src="/img/profile-icon.png" alt="profile icon" /></a></li>
-          <li><a href="/cart"><img src="/img/cart-icon.png" alt="shopping cart icon" /></a></li>
+          <li><a href="#" aria-label="Search"><img src="/img/search-icon.png" alt="search icon" /></a></li>
+          <li><a href="#" aria-label="Profile"><img src="/img/profile-icon.png" alt="profile icon" /></a></li>
+          <li><a href="/cart" aria-label="Shopping Cart"><img src="/img/cart-icon.png" alt="shopping cart icon" /></a></li>
         </ul>
       </div>
     </div>
@@ -40,7 +43,7 @@
       <div class="pie-item">
         <img src="/img/cheesecake-1.png" alt="image of Original Cheesecake" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="original-cheesecake">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
           <h4>Original Cheesecake</h4>
@@ -50,7 +53,7 @@
       <div class="pie-item">
         <img src="/img/cheesecake-2.png" alt="image of Strawberry Cheesecake" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="strawberry-cheesecake">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
           <h4>Strawberry Cheesecake</h4>
@@ -60,7 +63,7 @@
       <div class="pie-item">
         <img src="/img/cheesecake-3.png" alt="image of Chocolate Cheesecake" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="chocolate-cheesecake">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
           <h4>Chocolate Cheesecake</h4>
@@ -70,7 +73,7 @@
       <div class="pie-item">
         <img src="/img/cheesecake-4.png" alt="image of Birthday Cheesecake" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="birthday-cheesecake">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
           <h4>Birthday Cheesecake</h4>
@@ -80,7 +83,7 @@
       <div class="pie-item">
         <img src="/img/cheesecake-5.png" alt="image of Caramel Cheesecake" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="caramel-cheesecake">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
           <h4>Caramel Cheesecake</h4>
@@ -90,7 +93,7 @@
       <div class="pie-item">
         <img src="/img/cheesecake-6.png" alt="image of Pistachio Cheesecake" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="pistachio-cheesecake">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
           <h4>Pistachio Cheesecake</h4>
@@ -99,7 +102,42 @@
       </div>
     </div>
   </section>
+  <script src="/js/products.js"></script>
+  <script src="/js/cart-storage.js"></script>
+  <script src="/js/cart.js"></script>
   <script src="/js/dropdown.js"></script>
+  <script>
+    // Add to cart button event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const productId = this.dataset.productId;
+          const product = getProductById(productId);
+          
+          if (product) {
+            // Add loading state
+            this.classList.add('loading');
+            this.textContent = 'Adding...';
+            
+            // Simulate slight delay for better UX
+            setTimeout(() => {
+              try {
+                cart.addItem(productId, 1);
+                cart.showAddToCartNotification(product.name);
+              } catch (error) {
+                console.error('Error adding to cart:', error);
+              } finally {
+                // Remove loading state
+                this.classList.remove('loading');
+                this.textContent = '+ Add to cart';
+              }
+            }, 300);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

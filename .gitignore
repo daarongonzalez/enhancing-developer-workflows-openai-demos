@@ -68,4 +68,14 @@ logs
 
 # Temporary files
 tmp/
-temp/ 
+temp/
+
+# Image files - exclude from repository
+img/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+*.ico 

@@ -3,8 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bethany's Pie Shop - Fresh homemade pies and cheesecakes">
   <title>Bethany's Pie Shop</title>
   <link href="/css/main.css" rel="stylesheet">
+  <link href="/css/cart.css" rel="stylesheet">
 </head>
 
 <body>
@@ -27,21 +30,22 @@
       </nav>
       <div class="header-icons">
         <ul>
-          <li><a href=""><img src="/img/search-icon.png" alt="search icon" /></a></li>
-          <li><a href=""><img src="/img/profile-icon.png" alt="profile icon" /></a></li>
-          <li><a href="/cart"><img src="/img/cart-icon.png" alt="shopping cart icon" /></a></li>
+          <li><a href="#" aria-label="Search"><img src="/img/search-icon.png" alt="search icon" /></a></li>
+          <li><a href="#" aria-label="Profile"><img src="/img/profile-icon.png" alt="profile icon" /></a></li>
+          <li><a href="/cart" aria-label="Shopping Cart"><img src="/img/cart-icon.png" alt="shopping cart icon" /></a></li>
+          <!-- Cart icon with dynamic counter - cart.js will add item count badge here -->
         </ul>
       </div>
     </div>
   </header>
   <section class="main-content">
     <div class="carousel">
-      <div class="carousel-image"><img src="./img/hero-1.png" alt="larger header image of blueberry pie" /></div>
-      <div class="carousel-image"><img src="./img/hero-2.png" alt="larger header image of blueberry pie" /></div>
-      <div class="carousel-image"><img src="./img/hero-3.png" alt="larger header image of blueberry pie" /></div>
-      <button class="carousel-button-1 active-carousel-item"></button>
-      <button class="carousel-button-2"></button>
-      <button class="carousel-button-3"></button>
+      <div class="carousel-image"><img src="/img/hero-1.png" alt="larger header image of blueberry pie" /></div>
+      <div class="carousel-image"><img src="/img/hero-2.png" alt="larger header image of blueberry pie" /></div>
+      <div class="carousel-image"><img src="/img/hero-3.png" alt="larger header image of blueberry pie" /></div>
+      <button class="carousel-button-1 active-carousel-item" aria-label="Show first image"></button>
+      <button class="carousel-button-2" aria-label="Show second image"></button>
+      <button class="carousel-button-3" aria-label="Show third image"></button>
     </div>
     <div class="focused-message">
       <div class="logo">
@@ -56,7 +60,7 @@
       <div class="pie-item">
         <img src="/img/pie-1.png" alt="image of Classic Apple Pie" />
         <div class="add-to-cart">
-          <p><a href="#">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="classic-apple-pie">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
           <h4>Classic Apple Pie</h4>
@@ -66,29 +70,66 @@
       <div class="pie-item">
         <img src="/img/pie-2.png" alt="image of Pumpkin Pie" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="pumpkin-pie">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
-          <h4>Classic Apple Pie</h4>
+          <h4>Pumpkin Pie</h4>
           <p>$12.95</p>
         </div>
       </div>
       <div class="pie-item">
         <img src="/img/pie-3.png" alt="image of Chocolate Pecan Pie" />
         <div class="add-to-cart">
-          <p><a href="">+ Add to cart</a></p>
+          <p><button class="add-to-cart-btn" data-product-id="chocolate-pecan-pie">+ Add to cart</button></p>
         </div>
         <div class="pie-info">
-          <h4>Classic Apple Pie</h4>
+          <h4>Chocolate Pecan Pie</h4>
           <p>$12.95</p>
         </div>
       </div>
     </div>
   </section>
-  </div>
-  <script src="/js/dropdown.js"></script>
-  <script src="/js/carousel.js"></script>
-  <script src="/js/error-banner.js"></script>
+  <!-- Script loading order is important for dependencies -->
+  <script src="/js/products.js"></script>      <!-- Product database must load first -->
+  <script src="/js/cart-storage.js"></script>  <!-- Storage system for cart persistence -->
+  <script src="/js/cart.js"></script>          <!-- Main cart functionality -->
+  <script src="/js/dropdown.js"></script>      <!-- Navigation dropdown functionality -->
+  <script src="/js/carousel.js"></script>      <!-- Hero image carousel -->
+  <script src="/js/error-banner.js"></script>  <!-- Error handling (bug fixed) -->
+  <script>
+    // ENHANCED: Cart integration script
+    // This script connects the "Add to Cart" buttons with the cart functionality
+    // Add to cart button event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const productId = this.dataset.productId;
+          const product = getProductById(productId);
+          
+          if (product) {
+            // ENHANCED: Add loading state for better user experience
+            this.classList.add('loading');
+            this.textContent = 'Adding...';
+            
+            // Simulate slight delay for better UX
+            setTimeout(() => {
+              try {
+                cart.addItem(productId, 1);
+                cart.showAddToCartNotification(product.name);
+              } catch (error) {
+                console.error('Error adding to cart:', error);
+              } finally {
+                // Remove loading state
+                this.classList.remove('loading');
+                this.textContent = '+ Add to cart';
+              }
+            }, 300);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
