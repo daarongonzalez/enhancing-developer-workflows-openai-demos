@@ -90,16 +90,14 @@
     </div>
   </section>
   <!-- Script loading order is important for dependencies -->
-  <script src="/js/products.js"></script>      <!-- Product database must load first -->
-  <script src="/js/cart-storage.js"></script>  <!-- Storage system for cart persistence -->
-  <script src="/js/cart.js"></script>          <!-- Main cart functionality -->
-  <script src="/js/dropdown.js"></script>      <!-- Navigation dropdown functionality -->
-  <script src="/js/carousel.js"></script>      <!-- Hero image carousel -->
-  <script src="/js/error-banner.js"></script>  <!-- Error handling (bug fixed) -->
+  <script src="/js/products.js"></script>      <!-- Product database -->
+  <script src="/js/cart-storage.js"></script>  <!-- Cart storage -->
+  <script src="/js/cart.js"></script>          <!-- Cart functionality -->
+  <script src="/js/dropdown.js"></script>      <!-- Navigation dropdown -->
+  <script src="/js/carousel.js"></script>      <!-- Hero carousel -->
+  <script src="/js/error-banner.js"></script>  <!-- Error handling -->
   <script>
-    // ENHANCED: Cart integration script
-    // This script connects the "Add to Cart" buttons with the cart functionality
-    // Add to cart button event listeners
+    // Cart integration script
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         button.addEventListener('click', function(e) {
@@ -108,11 +106,9 @@
           const product = getProductById(productId);
           
           if (product) {
-            // ENHANCED: Add loading state for better user experience
             this.classList.add('loading');
             this.textContent = 'Adding...';
             
-            // Simulate slight delay for better UX
             setTimeout(() => {
               try {
                 cart.addItem(productId, 1);
@@ -120,7 +116,6 @@
               } catch (error) {
                 console.error('Error adding to cart:', error);
               } finally {
-                // Remove loading state
                 this.classList.remove('loading');
                 this.textContent = '+ Add to cart';
               }

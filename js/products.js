@@ -1,16 +1,13 @@
 // Product database for Bethany's Pie Shop
-// NEW FILE: Created to centralize product management and provide consistent product data across the application
-// This replaces hardcoded product information scattered throughout the HTML files
-
 const products = {
-  // Pies from homepage - Featured products displayed on the main page
+  // Pies from homepage
   "classic-apple-pie": {
     id: "classic-apple-pie",
     name: "Classic Apple Pie",
     price: 12.95,
     image: "/img/pie-1.png",
     description: "Our famous homemade apple pie with cinnamon spice",
-    category: "fruit-pies" // Used for filtering and organization
+    category: "fruit-pies"
   },
   "pumpkin-pie": {
     id: "pumpkin-pie", 
@@ -29,11 +26,11 @@ const products = {
     category: "nut-pies"
   },
   
-  // Cheesecakes from shop page - Additional products available in the shop section
+  // Cheesecakes from shop page
   "original-cheesecake": {
     id: "original-cheesecake",
     name: "Original Cheesecake",
-    price: 18.95, // Higher price point for premium cheesecakes
+    price: 18.95,
     image: "/img/cheesecake-1.png", 
     description: "Our famous homemade cheesecake",
     category: "cheesecakes"
@@ -81,28 +78,19 @@ const products = {
 };
 
 // Helper functions for product retrieval
-// These functions provide a clean API for accessing product data throughout the application
-
 function getProductById(id) {
-  // Returns a product object by its ID, or null if not found
-  // Used extensively by the cart system to validate products before adding to cart
   return products[id] || null;
 }
 
 function getAllProducts() {
-  // Returns an array of all product objects
-  // Useful for displaying product catalogs or generating product lists
   return Object.values(products);
 }
 
 function getProductsByCategory(category) {
-  // Returns an array of products filtered by category
-  // Enables category-based browsing and filtering functionality
   return Object.values(products).filter(product => product.category === category);
 }
 
 // Export for use in other modules
-// Enables this product database to be used in Node.js environments if needed
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { products, getProductById, getAllProducts, getProductsByCategory };
 } 
